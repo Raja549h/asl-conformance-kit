@@ -1,7 +1,7 @@
 # ASL Signed Evidence Report
 
-**Containment Level:** L4.5 (Architecture Verified)
-**Issued At:** 1793030855.2608633
+**Containment Level:** L4.5 (Full Kernel + Mediated)
+**Issued At:** 1793032617.1726503
 
 ## Evidence Summary
 
@@ -12,15 +12,16 @@
 - [x] L4.5: 700-agent swarm — 0 breaches, 0 false alarms
 - [x] L4.5: fault injection — all paths fail closed
 - [x] L4.5: mutation kill rate = 97.7% (>= 95%)
+- [x] kernel namespace confinement detected
 
 ## Host Capabilities
 
-- platform: win32
-- resource_limits: False
-- network_namespace: False
-- bubblewrap: False
+- platform: linux
+- resource_limits: True
+- network_namespace: True
+- bubblewrap: True
 - job_objects: False
-- can_deny_egress: False
+- can_deny_egress: True
 
 ## Breach Counts by Gate
 
@@ -35,4 +36,4 @@
 ## Signature
 
 Algorithm: HMAC-SHA256
-Signature: 5d49ed4f83f2ce743a50275fda1a59f61b067f6d217f5679f9dc7c5a32017c7b
+Signature: f5b4d0d8578b19db62bc2bb923c68a39ff81433b6aeb515ae96a54ac25c5286b

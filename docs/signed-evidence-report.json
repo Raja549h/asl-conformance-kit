@@ -9,16 +9,15 @@
     "swarm_700": 0
   },
   "capabilities": {
-    "bubblewrap": false,
-    "can_deny_egress": false,
+    "bubblewrap": true,
+    "can_deny_egress": true,
     "job_objects": false,
-    "network_namespace": false,
-    "platform": "win32",
-    "resource_limits": false
+    "network_namespace": true,
+    "platform": "linux",
+    "resource_limits": true
   },
   "details": [
-    "kernel-level egress confinement not detected on this host (no WSL, Docker, unshare, or bwrap)",
-    "L4.5 achieved (architecture verified, no kernel confinement)"
+    "L4.5 achieved with kernel namespace confinement"
   ],
   "evidence": {
     "evolution_soak_report": true,
@@ -30,8 +29,8 @@
     "trials_1000_report": true
   },
   "failed": [],
-  "issued_at": 1793031310.9957507,
-  "level": "L4.5 (Architecture Verified)",
+  "issued_at": 1793032617.1726503,
+  "level": "L4.5 (Full Kernel + Mediated)",
   "passed": [
     "L3: 0 dev-class breaches across 16 classes x 1000 trials",
     "L3: 0 heldout_v2 breaches across 5 classes x 1000 trials",
@@ -39,8 +38,9 @@
     "L4.5: evolutionary soak \u2014 0 breaches against real gateway",
     "L4.5: 700-agent swarm \u2014 0 breaches, 0 false alarms",
     "L4.5: fault injection \u2014 all paths fail closed",
-    "L4.5: mutation kill rate = 97.7% (>= 95%)"
+    "L4.5: mutation kill rate = 97.7% (>= 95%)",
+    "kernel namespace confinement detected"
   ],
   "receipt_algorithm": "HMAC-SHA256",
-  "receipt_signature": "565177ed89fa84bad1c62afc457874cefac892bc445402db9626e24f01683b8e"
+  "receipt_signature": "f5b4d0d8578b19db62bc2bb923c68a39ff81433b6aeb515ae96a54ac25c5286b"
 }

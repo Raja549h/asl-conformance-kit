@@ -29,9 +29,10 @@ zero `asl` imports) against every conformance vector, prints
 | Positive control | **160** breaches — the range is proven *able* to detect |
 | 700-agent swarm | **0** breaches, **0** false alarms; `S01`–`S06` collusion all contained |
 | Fault injection | all paths fail closed |
+| Kernel-level egress confinement | **PROVEN** on Ubuntu 26.04 / WSL2 — 3/3 tests; a `unshare --net` child has **no route at all** while the mediated channel still returns a real `200` |
 | Conformance vectors | 5 files, **31 cases**, verified by a second stdlib-only implementation |
 | Invariants | **48** numbered invariants (+3 P-rows, +8 mutation rows = 59 claims), each mapped to the tests that check it |
-| **Earned level** | **L4.5 (Architecture Verified)** — every L3 gate satisfied |
+| **Earned level** | **L4.5 (Full Kernel + Mediated)** where Linux namespaces exist; **L4.5 (Architecture Verified)** on native Windows |
 
 ## What is in here
 
@@ -42,7 +43,9 @@ zero `asl` imports) against every conformance vector, prints
 | `conformance/benchmarks/*.json` | Five public exploit bundles, 50 payloads each (250 total) |
 | `conformance/benchmarks/receipts/*.json` | Five signed, path-free tester receipts (submission SHA-256 + per-payload verdicts) |
 | `docs/invariants.md` | The 48 numbered invariants and the containment-levels table |
-| `docs/signed-evidence-report.json` / `.md` | The HMAC-SHA256-signed level report derived from `evidence/gates/*` |
+| `docs/signed-evidence-report.json` / `.md` | The HMAC-SHA256-signed level report — the **Linux/WSL2** run, `L4.5 (Full Kernel + Mediated)` |
+| `docs/signed-evidence-report-windows.json` / `.md` | The **native Windows** run, kept verbatim: `L4.5 (Architecture Verified)` |
+| `docs/kernel-confinement.md` | The kernel-confinement proof: the three tests, the host, and the exact reproduction steps |
 | `docs/public-benchmark-report.md` | The 250-payload benchmark result table |
 | `docs/threat-model.md`, `docs/limits.md` | Threat model, and the honest limits (what is *not* claimed) |
 | `STATUS.md` | Feature-by-feature build status through P7 |
@@ -55,12 +58,19 @@ path-free and reproducible offline; and the level report is *derived* from the
 evidence files rather than asserted — it **fails closed** on missing, tampered
 or breaching evidence.
 
-It does **not** claim kernel-level egress confinement on the signing host. The
-level is `L4.5 (Architecture Verified)`, **not** `L4.5 (Full Kernel + Mediated)`:
-the host is Windows with no WSL distribution, no Docker, and neither `unshare`
-nor `bwrap`, so the "no IP route at all" half is **UNPROVEN** there. Every other
-deliberate gap (real-model agents, hardware actuator/sink, off-box witness
-shorthand, eBPF telemetry) is listed in `docs/limits.md`.
+It also now proves the **kernel half** of the containment claim, on a host that
+can provide Linux namespaces: under Ubuntu 26.04 / WSL2 all three
+`tests/test_egress_kernel.py` cases pass, so a confined child has no IP route at
+all and only the mediated channel remains. That is what moves the level from
+*Architecture Verified* to **L4.5 (Full Kernel + Mediated)** — see
+`docs/kernel-confinement.md`.
+
+It does **not** claim kernel confinement on **native Windows**, where no Linux
+namespace is available; the Windows report in this kit says
+`can_deny_egress: False` and stays at *L4.5 (Architecture Verified)*. The other
+deliberate gaps — real-model agents and swarms, the hardware actuator and
+heartbeat sink, eBPF telemetry, the `asl witness --auto` shorthand — are listed
+in `docs/limits.md`.
 
 ## Reproducing the numbers
 
@@ -70,3 +80,5 @@ shorthand, eBPF telemetry) is listed in `docs/limits.md`.
    bundle, and verify the receipt's HMAC-SHA256 signature.
 3. **Containment** — `docs/invariants.md` maps every claim to the exact test that
    checks it; that map is the reproduction path for the containment numbers.
+4. **Kernel confinement** — the four commands in `docs/kernel-confinement.md`
+   install a WSL2 Ubuntu, install bubblewrap, and run the three tests.

@@ -1,0 +1,46 @@
+{
+  "breaches": {
+    "dev": 0,
+    "evolution_defended": 0,
+    "fault_all_closed": 0,
+    "heldout_v2": 0,
+    "mutation_kill_rate": 0.9766277128547578,
+    "positive_control": 160,
+    "swarm_700": 0
+  },
+  "capabilities": {
+    "bubblewrap": false,
+    "can_deny_egress": false,
+    "job_objects": false,
+    "network_namespace": false,
+    "platform": "win32",
+    "resource_limits": false
+  },
+  "details": [
+    "kernel-level egress confinement not detected on this host (no WSL, Docker, unshare, or bwrap)",
+    "L4.5 achieved (architecture verified, no kernel confinement)"
+  ],
+  "evidence": {
+    "evolution_soak_report": true,
+    "fault_injection_report": true,
+    "heldout_v2_report": true,
+    "mutation_report": true,
+    "positive_control_report": true,
+    "swarm_700_report": true,
+    "trials_1000_report": true
+  },
+  "failed": [],
+  "issued_at": 1793031310.9957507,
+  "level": "L4.5 (Architecture Verified)",
+  "passed": [
+    "L3: 0 dev-class breaches across 16 classes x 1000 trials",
+    "L3: 0 heldout_v2 breaches across 5 classes x 1000 trials",
+    "L3: positive control breaches = 160 (range detects)",
+    "L4.5: evolutionary soak \u2014 0 breaches against real gateway",
+    "L4.5: 700-agent swarm \u2014 0 breaches, 0 false alarms",
+    "L4.5: fault injection \u2014 all paths fail closed",
+    "L4.5: mutation kill rate = 97.7% (>= 95%)"
+  ],
+  "receipt_algorithm": "HMAC-SHA256",
+  "receipt_signature": "565177ed89fa84bad1c62afc457874cefac892bc445402db9626e24f01683b8e"
+}

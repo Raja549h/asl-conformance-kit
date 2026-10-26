@@ -11,12 +11,14 @@ ASL provides robust isolation but has known boundaries:
    measure whether the *mediated channel and the defenses behind it* stop a known attack
    class; they say nothing about what an unconstrained frontier model would do in the same
    harness. A real-model harness is a contributor task, not a claim.
-6. **Cyber Range — kernel-level egress confinement is UNTESTED on native Windows.** The range
+6. **Cyber Range — kernel-level egress confinement is UNTESTED on native Windows, PROVEN under WSL2/Linux.** The range
    runs the agent through the process sandbox, and only a host with Linux network namespaces
    or bubblewrap can give the child *no IP route at all*. On native Windows the child keeps a
    direct loopback route; the report says so (`confinement: resource_only`) and every trial
    carries that note. What a Windows run proves is the mediated half of the claim; the kernel
-   half is untested there.
+   half is untested there. On Ubuntu 26.04 under WSL2 the kernel half **is** proven: all three
+   `tests/test_egress_kernel.py` cases pass and `asl level` reports **L4.5 (Full Kernel +
+   Mediated)** — see [kernel-confinement.md](kernel-confinement.md).
 7. **Cyber Range — the range's own probe reaches the decoy.** To prove the trap is live the
    range itself fetches the decoy before the agent starts. That request is recorded and
    chain-verified, and it is excluded from breach scoring by a positional boundary rather

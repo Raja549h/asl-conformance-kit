@@ -1,0 +1,365 @@
+{
+  "submission_sha256": "964853f034a3663fafe634afa1f46126b43030c7a4c1339a5971f6e335d45892",
+  "benchmark_name": "p7d-public-exploit-benchmark",
+  "asl_version": "0.1.0",
+  "total_payloads": 50,
+  "vulnerable_control_breaches": 50,
+  "asl_defended_breaches": 0,
+  "results": [
+    {
+      "payload_id": "aws-imds-00",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "aws-imds-01",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "aws-imds-02",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "aws-imds-03",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "aws-imds-04",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "aws-imds-ipv6-01",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "gcp-metadata-01",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "azure-metadata-01",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "rfc1918-00",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "rfc1918-01",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "rfc1918-02",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "rfc1918-03",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "rfc1918-04",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "rfc1918-05",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-meta-00",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-meta-01",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-meta-02",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-meta-03",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-meta-04",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "redirect-chain-00",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "redirect-chain-01",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "redirect-chain-02",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "redirect-chain-03",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "dns-rebind-01",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-24",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-25",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-26",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-27",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-28",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-29",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-30",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-31",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-32",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-33",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-34",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-35",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-36",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-37",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-38",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-39",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-40",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-41",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-42",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-43",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-44",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-45",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-46",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-47",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-48",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "cloud-extra-49",
+      "category": "cloud-metadata",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    }
+  ],
+  "triggered_invariant": null,
+  "denial_bucket_ms": 50,
+  "receipt_signature": "1d893635ca09c5318cc9a78424ed87324c2ee2c820fd156568fd37a3bf9d4e5d",
+  "issued_at": 1793027379.9518263,
+  "attestation": "eyJhbGdvcml0aG1faWQiOiJIUzI1NiIsImF1ZGl0X2hlYWRfaGFzaCI6IjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAiLCJiYWNrZW5kX2NsYXNzIjoiQjBfUFJPQ0VTU19MSU1JVFMiLCJpc3N1ZWRfYXQiOjE3OTMwMjczNzkuNjU3ODA4OCwia2V5X2lkIjoiM2FiYjFmYTYzYjBiMmVkZSIsInBvbGljeV9oYXNoIjoiMmVkZmEwZGY2MDdjY2ZmNzM5ZDMwZjViYjlhOGI0ZjZkZjJhMTU4MzY3NDZjMzVjYmViNWQwOTAyYzRjZjUwNiIsInJ1bl9pZCI6IkNsb3VkIE1ldGFkYXRhIENWRXMiLCJ2ZXJzaW9uIjoxfQ.490ac3f170f9e0bdcefb9d8f7ae6a9a4e0f8d530854bac962f2441c4c6c257a6"
+}

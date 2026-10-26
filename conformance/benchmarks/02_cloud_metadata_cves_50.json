@@ -1,0 +1,508 @@
+{
+  "version": 1,
+  "name": "Cloud Metadata CVEs",
+  "description": "AWS IMDS 169.254.169.254 / fd00:ec2::254, GCP, Azure, Alibaba, Oracle, CGNAT, RFC1918, multi-hop redirect chains to metadata, and dual-A-record DNS rebinding payloads.",
+  "payload_count": 50,
+  "payloads": [
+    {
+      "payload_id": "aws-imds-00",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://169.254.169.254/latest/meta-data/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "AWS IMDS metadata: http://169.254.169.254/latest/meta-data/"
+    },
+    {
+      "payload_id": "aws-imds-01",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://169.254.169.254/latest/user-data/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "AWS IMDS metadata: http://169.254.169.254/latest/user-data/"
+    },
+    {
+      "payload_id": "aws-imds-02",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://169.254.169.254/latest/meta-data/iam/security-credentials/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "AWS IMDS metadata: http://169.254.169.254/latest/meta-data/iam/security-credentials/"
+    },
+    {
+      "payload_id": "aws-imds-03",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://169.254.169.254/latest/dynamic/instance-identity/document",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "AWS IMDS metadata: http://169.254.169.254/latest/dynamic/instance-identity/document"
+    },
+    {
+      "payload_id": "aws-imds-04",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://169.254.169.254/latest/meta-data/placement/availability-zone/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "AWS IMDS metadata: http://169.254.169.254/latest/meta-data/placement/availability-zone/"
+    },
+    {
+      "payload_id": "aws-imds-ipv6-01",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://[fd00:ec2::254]/latest/meta-data/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "AWS IMDS over IPv6"
+    },
+    {
+      "payload_id": "gcp-metadata-01",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://metadata.google.internal/computeMetadata/v1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "GCP metadata endpoint"
+    },
+    {
+      "payload_id": "azure-metadata-01",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://169.254.169.254/metadata/instance?api-version=2021-02-01",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Azure IMDS endpoint"
+    },
+    {
+      "payload_id": "rfc1918-00",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "RFC1918 private range: 10.0.0.1"
+    },
+    {
+      "payload_id": "rfc1918-01",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://172.16.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "RFC1918 private range: 172.16.0.1"
+    },
+    {
+      "payload_id": "rfc1918-02",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://192.168.1.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "RFC1918 private range: 192.168.1.1"
+    },
+    {
+      "payload_id": "rfc1918-03",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.255.255.255/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "RFC1918 private range: 10.255.255.255"
+    },
+    {
+      "payload_id": "rfc1918-04",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://172.31.255.255/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "RFC1918 private range: 172.31.255.255"
+    },
+    {
+      "payload_id": "rfc1918-05",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://192.168.255.255/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "RFC1918 private range: 192.168.255.255"
+    },
+    {
+      "payload_id": "cloud-meta-00",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://100.64.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Cloud metadata range: 100.64.0.1"
+    },
+    {
+      "payload_id": "cloud-meta-01",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://169.254.169.254/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Cloud metadata range: 169.254.169.254"
+    },
+    {
+      "payload_id": "cloud-meta-02",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://169.254.170.2/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Cloud metadata range: 169.254.170.2"
+    },
+    {
+      "payload_id": "cloud-meta-03",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://192.0.0.192/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Cloud metadata range: 192.0.0.192"
+    },
+    {
+      "payload_id": "cloud-meta-04",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://100.64.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Cloud metadata range: 100.64.0.1"
+    },
+    {
+      "payload_id": "redirect-chain-00",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://evil.example/redirect-to-metadata",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Multi-hop redirect chain: http://evil.example/redirect-to-metadata"
+    },
+    {
+      "payload_id": "redirect-chain-01",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://redirect.example.com/http://169.254.169.254/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Multi-hop redirect chain: http://redirect.example.com/http://169.254.169.254/"
+    },
+    {
+      "payload_id": "redirect-chain-02",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://example.com/redirect?url=http://169.254.169.254/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Multi-hop redirect chain: http://example.com/redirect?url=http://169.254.169.254/"
+    },
+    {
+      "payload_id": "redirect-chain-03",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://open-redirect.example.com/?url=http://169.254.169.254/latest/meta-data/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Multi-hop redirect chain: http://open-redirect.example.com/?url=http://169.254.169.254/latest/meta-data/"
+    },
+    {
+      "payload_id": "dns-rebind-01",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://rebind.example.com/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "DNS rebinding: dual A-record to metadata"
+    },
+    {
+      "payload_id": "cloud-extra-24",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.24/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-25",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.25/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-26",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.26/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-27",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.27/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-28",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.28/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-29",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.29/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-30",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.30/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-31",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.31/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-32",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.32/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-33",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.33/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-34",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.34/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-35",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.35/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-36",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.36/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-37",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.37/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-38",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.38/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-39",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.39/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-40",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.40/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-41",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.41/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-42",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.42/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-43",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.43/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-44",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.44/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-45",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.45/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-46",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.46/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-47",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.47/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-48",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.48/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    },
+    {
+      "payload_id": "cloud-extra-49",
+      "category": "cloud-metadata",
+      "method": "GET",
+      "url": "http://10.0.0.49/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra cloud metadata probe"
+    }
+  ]
+}

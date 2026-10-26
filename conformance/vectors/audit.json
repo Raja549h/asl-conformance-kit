@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "family": "audit-chain",
+  "description": "Audit-chain entry and checkpoint vectors. Each entry's HMAC covers the previous entry's hash plus the canonical entry body. Signed under a clearly-labeled FAKE test key. An edited entry, changed key id, wrong version or unknown algorithm must fail verification.",
+  "fake_test_key_hex": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+  "genesis_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "key_id": "4773d12e2371bb93",
+  "entries": [
+    {
+      "seq": 1,
+      "timestamp": 1000000.0,
+      "event": "start.run",
+      "data": {"run_id": "run-1"},
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "version": 1,
+      "algorithm_id": "HS256",
+      "key_id": "4773d12e2371bb93",
+      "hash": "e7a991ec6930149370315bbeb0d6a0640dd93f9da6f166dfcc4da66c85e3648c"
+    },
+    {
+      "seq": 2,
+      "timestamp": 1000001.5,
+      "event": "kill.policy",
+      "data": {"reason": "budget", "run_id": "run-1"},
+      "prev_hash": "e7a991ec6930149370315bbeb0d6a0640dd93f9da6f166dfcc4da66c85e3648c",
+      "version": 1,
+      "algorithm_id": "HS256",
+      "key_id": "4773d12e2371bb93",
+      "hash": "87c7f5c944ebe88a90da64ac0481c315f6d696ec8234e755be4713515efa4d15"
+    }
+  ],
+  "checkpoint": {
+    "count": 2,
+    "head_hash": "87c7f5c944ebe88a90da64ac0481c315f6d696ec8234e755be4713515efa4d15",
+    "algorithm_id": "HS256",
+    "key_id": "4773d12e2371bb93",
+    "hmac": "53dfa333608802b3e6cb5eeaae8f25a552811de607863095ac5f69885760a8f8"
+  }
+}

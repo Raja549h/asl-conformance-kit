@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "family": "argument-hashing",
+  "description": "Argument hashing: SHA-256 over the canonical byte form. Binding a token to its exact arguments depends on this being deterministic.",
+  "cases": [
+    {
+      "name": "empty object",
+      "input": {},
+      "expected": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "name": "sorted keys",
+      "input": {
+        "b": 2,
+        "a": 1
+      },
+      "expected": "43258cff783fe7036d8a43033f830adfc60ec037382473548ac742b888292777"
+    },
+    {
+      "name": "key order independence",
+      "input": {
+        "a": 1,
+        "b": 2
+      },
+      "expected": "43258cff783fe7036d8a43033f830adfc60ec037382473548ac742b888292777"
+    },
+    {
+      "name": "array",
+      "input": [
+        1,
+        2,
+        3
+      ],
+      "expected": "a615eeaee21de5179de080de8c3052c8da901138406ba71c38c032845f7d54f4"
+    },
+    {
+      "name": "array reversed differs",
+      "input": [
+        3,
+        2,
+        1
+      ],
+      "expected": "30c8681f9b840aceee56b737f3b126ae67ec4eb71d2881db831f86014fba016d"
+    },
+    {
+      "name": "nested",
+      "input": {
+        "z": {
+          "y": 1,
+          "x": 2
+        },
+        "a": 0
+      },
+      "expected": "088a6516823f03c484c874a2f698b6b5bd515174a3ca6f68137566c49c68a939"
+    },
+    {
+      "name": "unicode",
+      "input": {
+        "name": "Jos\u00e9"
+      },
+      "expected": "0264c9b67e4687fb6eb775c9517fa029a75fa2b3e041da81bd8703885d13647b"
+    },
+    {
+      "name": "null true false",
+      "input": {
+        "c": null,
+        "a": true,
+        "b": "x"
+      },
+      "expected": "604710ce4e544750f2e55cf3de442cc29c17b39bd9a1529de07e443bb0a60dcb"
+    },
+    {
+      "name": "int float",
+      "input": {
+        "i": 7,
+        "f": 2.5
+      },
+      "expected": "4fbc3d880f8641e65678270ee38c3982d429016312dcdb026651966d2f3c6073"
+    }
+  ]
+}

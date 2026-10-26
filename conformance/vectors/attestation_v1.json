@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "family": "attestation-v1",
+  "description": "Portable containment attestation: signed wire token attesting a run-assurance manifest and audit head hash. Verified with HMAC-SHA256 under a clearly-labeled FAKE test key.",
+  "fake_test_key_hex": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+  "current_key_id": "4773d12e2371bb93",
+  "cases": [
+    {
+      "name": "valid attestation",
+      "wire": "eyJhbGdvcml0aG1faWQiOiJIUzI1NiIsImF1ZGl0X2hlYWRfaGFzaCI6IjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAiLCJiYWNrZW5kX2NsYXNzIjoiQjBfUFJPQ0VTU19MSU1JVFMiLCJpc3N1ZWRfYXQiOjE3OTI3MzI2MjIuMCwia2V5X2lkIjoiNDc3M2QxMmUyMzcxYmI5MyIsInBvbGljeV9oYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsInJ1bl9pZCI6InJ1bi1iZW5jaG1hcmstMDAxIiwidmVyc2lvbiI6MX0.c22ed5a12b53ff3a8698a3b55c3a08845870f6187efc908db26f5c58cbb7a22d",
+      "expect": "ok"
+    }
+  ]
+}

@@ -1,0 +1,365 @@
+{
+  "submission_sha256": "289dae61991cc918efe03240e42fbbb5f815a26b7cc7e176646f7533f84d507b",
+  "benchmark_name": "p7d-public-exploit-benchmark",
+  "asl_version": "0.1.0",
+  "total_payloads": 50,
+  "vulnerable_control_breaches": 50,
+  "asl_defended_breaches": 0,
+  "results": [
+    {
+      "payload_id": "crlf-00",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "crlf-01",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "crlf-02",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "crlf-03",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "crlf-04",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggling-00",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggling-01",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggling-02",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggling-03",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggling-04",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "traversal-00",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "traversal-01",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "traversal-02",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "traversal-03",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "traversal-04",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "overlong-00",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "overlong-01",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "overlong-02",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "overlong-03",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "overlong-04",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "overlong-05",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "overlong-06",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "overlong-07",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "overlong-08",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "overlong-09",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "port-25",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "port-26",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "port-27",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "port-28",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "port-29",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "port-30",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "off-allowlist-00",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "off-allowlist-01",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "off-allowlist-02",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "off-allowlist-03",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "off-allowlist-04",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggle-extra-36",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggle-extra-37",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggle-extra-38",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggle-extra-39",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggle-extra-40",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggle-extra-41",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggle-extra-42",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggle-extra-43",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggle-extra-44",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggle-extra-45",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggle-extra-46",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggle-extra-47",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggle-extra-48",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "smuggle-extra-49",
+      "category": "smuggling",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    }
+  ],
+  "triggered_invariant": null,
+  "denial_bucket_ms": 50,
+  "receipt_signature": "ab78ee404ed7541b12dc25377fc725a35ee87b5ba1fb4d4dcbf750a6693bd808",
+  "issued_at": 1793027380.2816842,
+  "attestation": "eyJhbGdvcml0aG1faWQiOiJIUzI1NiIsImF1ZGl0X2hlYWRfaGFzaCI6IjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAiLCJiYWNrZW5kX2NsYXNzIjoiQjBfUFJPQ0VTU19MSU1JVFMiLCJpc3N1ZWRfYXQiOjE3OTMwMjczNzkuOTg4MDgyNiwia2V5X2lkIjoiM2FiYjFmYTYzYjBiMmVkZSIsInBvbGljeV9oYXNoIjoiMmVkZmEwZGY2MDdjY2ZmNzM5ZDMwZjViYjlhOGI0ZjZkZjJhMTU4MzY3NDZjMzVjYmViNWQwOTAyYzRjZjUwNiIsInJ1bl9pZCI6Ik9XQVNQIENSUyBTbXVnZ2xpbmciLCJ2ZXJzaW9uIjoxfQ.6f1df35bc8089d9f55a68427d1ac924de16c046acdfb88c2f48321545d60d00d"
+}

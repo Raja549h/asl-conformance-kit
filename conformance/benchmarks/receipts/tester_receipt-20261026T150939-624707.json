@@ -1,0 +1,365 @@
+{
+  "submission_sha256": "c7a2c4eb8034b2f435558c1986f4f02d412c4ccd269c50745f73f4451d6405aa",
+  "benchmark_name": "p7d-public-exploit-benchmark",
+  "asl_version": "0.1.0",
+  "total_payloads": 50,
+  "vulnerable_control_breaches": 50,
+  "asl_defended_breaches": 0,
+  "results": [
+    {
+      "payload_id": "ssrf-ip-00",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-ip-01",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-ip-02",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-ip-03",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-ip-04",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-ip-05",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-ip-06",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-ip-07",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-ip-08",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-ip-09",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-ip-10",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-ip-11",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-ip-12",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-v6-00",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-v6-01",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-v6-02",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-v6-03",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-userinfo-00",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-userinfo-01",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-userinfo-02",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-userinfo-03",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-userinfo-04",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-userinfo-05",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-tricky-00",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-tricky-01",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-tricky-02",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-tricky-03",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-zone-00",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-zone-01",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-zone-02",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-zone-03",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-zone-04",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-zone-05",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-zone-06",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-zone-07",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-extra-35",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-extra-36",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-extra-37",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-extra-38",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-extra-39",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-extra-40",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-extra-41",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-extra-42",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-extra-43",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-extra-44",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-extra-45",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-extra-46",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-extra-47",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-extra-48",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    },
+    {
+      "payload_id": "ssrf-extra-49",
+      "category": "ssrf",
+      "verdict": "CONTAINED",
+      "triggered_invariant": null,
+      "denial_bucket_ms": 0
+    }
+  ],
+  "triggered_invariant": null,
+  "denial_bucket_ms": 50,
+  "receipt_signature": "cc29ce9e359fe46a78cdd8f0ecc3a393ee40f2559629baa57bbdc322f4915454",
+  "issued_at": 1793027379.6247072,
+  "attestation": "eyJhbGdvcml0aG1faWQiOiJIUzI1NiIsImF1ZGl0X2hlYWRfaGFzaCI6IjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAiLCJiYWNrZW5kX2NsYXNzIjoiQjBfUFJPQ0VTU19MSU1JVFMiLCJpc3N1ZWRfYXQiOjE3OTMwMjczNzkuMzEzNzc5NCwia2V5X2lkIjoiM2FiYjFmYTYzYjBiMmVkZSIsInBvbGljeV9oYXNoIjoiMmVkZmEwZGY2MDdjY2ZmNzM5ZDMwZjViYjlhOGI0ZjZkZjJhMTU4MzY3NDZjMzVjYmViNWQwOTAyYzRjZjUwNiIsInJ1bl9pZCI6IlNTUkYgUGF5bG9hZHNBbGxUaGVUaGluZ3MiLCJ2ZXJzaW9uIjoxfQ.c60eb69944dcd97e731508c6f1f60cd513b709fdf2457873817bc967d77669c6"
+}

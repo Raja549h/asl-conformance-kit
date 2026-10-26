@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "family": "canonical-json",
+  "description": "Canonical JSON encoding: sorted keys, fixed separators, non-ASCII preserved, NaN/Infinity and duplicate keys rejected. Used by tokens, audit entries and checkpoints.",
+  "cases": [
+    {
+      "name": "empty object",
+      "input": {},
+      "expected": "{}"
+    },
+    {
+      "name": "empty object array",
+      "input": [],
+      "expected": "[]"
+    },
+    {
+      "name": "sorted keys",
+      "input": {
+        "b": 2,
+        "a": 1
+      },
+      "expected": "{\"a\":1,\"b\":2}"
+    },
+    {
+      "name": "nested sorted keys",
+      "input": {
+        "z": {
+          "y": 1,
+          "x": 2
+        },
+        "a": 0
+      },
+      "expected": "{\"a\":0,\"z\":{\"x\":2,\"y\":1}}"
+    },
+    {
+      "name": "array order preserved",
+      "input": [
+        3,
+        1,
+        2
+      ],
+      "expected": "[3,1,2]"
+    },
+    {
+      "name": "mixed types",
+      "input": {
+        "c": null,
+        "a": true,
+        "b": "x"
+      },
+      "expected": "{\"a\":true,\"b\":\"x\",\"c\":null}"
+    },
+    {
+      "name": "integer and float",
+      "input": {
+        "i": 7,
+        "f": 2.5
+      },
+      "expected": "{\"f\":2.5,\"i\":7}"
+    },
+    {
+      "name": "unicode preserved (ensure_ascii=False)",
+      "input": {
+        "name": "José"
+      },
+      "expected": "{\"name\":\"José\"}"
+    },
+    {
+      "name": "zero and negative numbers",
+      "input": {
+        "neg": -3,
+        "zero": 0
+      },
+      "expected": "{\"neg\":-3,\"zero\":0}"
+    },
+    {
+      "name": "duplicate keys rejected",
+      "input": "{\"a\":1,\"a\":2}",
+      "op": "parse",
+      "error": "duplicate key"
+    },
+    {
+      "name": "NaN rejected",
+      "input": "NaN",
+      "op": "parse",
+      "error": "constant NaN is not allowed"
+    },
+    {
+      "name": "Infinity rejected",
+      "input": "Infinity",
+      "op": "parse",
+      "error": "constant Infinity is not allowed"
+    },
+    {
+      "name": "lone surrogate rejected",
+      "input": "\"\\ud800\"",
+      "op": "parse",
+      "error": "string is not valid UTF-8"
+    },
+    {
+      "name": "deep nesting rejected",
+      "input": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[1]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+      "op": "parse",
+      "error": "value nests too deeply"
+    },
+    {
+      "name": "non-string object key rejected",
+      "input": "{1: \"x\"}",
+      "op": "parse",
+      "error": "invalid JSON"
+    }
+  ]
+}

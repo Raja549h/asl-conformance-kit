@@ -1,0 +1,508 @@
+{
+  "version": 1,
+  "name": "SSRF PayloadsAllTheThings",
+  "description": "Decimal/hex/octal/shortened IPv4, IPv4-mapped IPv6, 6to4, Teredo, RFC3986 userinfo @, backslash/null/percent-encoded host, zone-ID, and non-HTTP scheme payloads.",
+  "payload_count": 50,
+  "payloads": [
+    {
+      "payload_id": "ssrf-ip-00",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://2130706433/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Disguised IP literal: 2130706433"
+    },
+    {
+      "payload_id": "ssrf-ip-01",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://0x7f000001/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Disguised IP literal: 0x7f000001"
+    },
+    {
+      "payload_id": "ssrf-ip-02",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://0x7f.0.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Disguised IP literal: 0x7f.0.0.1"
+    },
+    {
+      "payload_id": "ssrf-ip-03",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://0177.0.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Disguised IP literal: 0177.0.0.1"
+    },
+    {
+      "payload_id": "ssrf-ip-04",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://0177.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Disguised IP literal: 0177.1"
+    },
+    {
+      "payload_id": "ssrf-ip-05",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Disguised IP literal: 127.1"
+    },
+    {
+      "payload_id": "ssrf-ip-06",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Disguised IP literal: 127.0.1"
+    },
+    {
+      "payload_id": "ssrf-ip-07",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Disguised IP literal: 127.0.0.0.1"
+    },
+    {
+      "payload_id": "ssrf-ip-08",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://0/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Disguised IP literal: 0"
+    },
+    {
+      "payload_id": "ssrf-ip-09",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://255.255.255.255/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Disguised IP literal: 255.255.255.255"
+    },
+    {
+      "payload_id": "ssrf-ip-10",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://3232235777/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Disguised IP literal: 3232235777"
+    },
+    {
+      "payload_id": "ssrf-ip-11",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://0xac100101/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Disguised IP literal: 0xac100101"
+    },
+    {
+      "payload_id": "ssrf-ip-12",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://0324.0320.0001.0001/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Disguised IP literal: 0324.0320.0001.0001"
+    },
+    {
+      "payload_id": "ssrf-v6-00",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://[::ffff:127.0.0.1]/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "IPv6 disguised address: ::ffff:127.0.0.1"
+    },
+    {
+      "payload_id": "ssrf-v6-01",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://[::ffff:0.0.0.0]/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "IPv6 disguised address: ::ffff:0.0.0.0"
+    },
+    {
+      "payload_id": "ssrf-v6-02",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://[2002:7f00:1::1]/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "IPv6 disguised address: 2002:7f00:1::1"
+    },
+    {
+      "payload_id": "ssrf-v6-03",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://[2001:0000:4136:e378:8000:63bf:3fff:fdd2]/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "IPv6 disguised address: 2001:0000:4136:e378:8000:63bf:3fff:fdd2"
+    },
+    {
+      "payload_id": "ssrf-userinfo-00",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1@evil.example/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Userinfo @ trick: http://127.0.0.1@evil.example/"
+    },
+    {
+      "payload_id": "ssrf-userinfo-01",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://evil.example@127.0.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Userinfo @ trick: http://evil.example@127.0.0.1/"
+    },
+    {
+      "payload_id": "ssrf-userinfo-02",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://user:pass@127.0.0.1@evil.example/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Userinfo @ trick: http://user:pass@127.0.0.1@evil.example/"
+    },
+    {
+      "payload_id": "ssrf-userinfo-03",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://@127.0.0.1@evil.example/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Userinfo @ trick: http://@127.0.0.1@evil.example/"
+    },
+    {
+      "payload_id": "ssrf-userinfo-04",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:80@evil.example/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Userinfo @ trick: http://127.0.0.1:80@evil.example/"
+    },
+    {
+      "payload_id": "ssrf-userinfo-05",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://evil.example:80@127.0.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Userinfo @ trick: http://evil.example:80@127.0.0.1/"
+    },
+    {
+      "payload_id": "ssrf-tricky-00",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://example.com\\@127.0.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Tricky host encoding: http://example.com\\@127.0.0.1/"
+    },
+    {
+      "payload_id": "ssrf-tricky-01",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://example.com%00@127.0.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Tricky host encoding: http://example.com%00@127.0.0.1/"
+    },
+    {
+      "payload_id": "ssrf-tricky-02",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://example.com%25%30%31@127.0.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Tricky host encoding: http://example.com%25%30%31@127.0.0.1/"
+    },
+    {
+      "payload_id": "ssrf-tricky-03",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://example.com%2f@127.0.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Tricky host encoding: http://example.com%2f@127.0.0.1/"
+    },
+    {
+      "payload_id": "ssrf-zone-00",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://fe80::1%eth0/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Zone ID or non-HTTP scheme: http://fe80::1%eth0/"
+    },
+    {
+      "payload_id": "ssrf-zone-01",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "ftp://example.com/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Zone ID or non-HTTP scheme: ftp://example.com/"
+    },
+    {
+      "payload_id": "ssrf-zone-02",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "gopher://127.0.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Zone ID or non-HTTP scheme: gopher://127.0.0.1/"
+    },
+    {
+      "payload_id": "ssrf-zone-03",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "file:///etc/passwd",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Zone ID or non-HTTP scheme: file:///etc/passwd"
+    },
+    {
+      "payload_id": "ssrf-zone-04",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "javascript:alert(1)",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Zone ID or non-HTTP scheme: javascript:alert(1)"
+    },
+    {
+      "payload_id": "ssrf-zone-05",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "data:text/plain,x",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Zone ID or non-HTTP scheme: data:text/plain,x"
+    },
+    {
+      "payload_id": "ssrf-zone-06",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "ws://127.0.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Zone ID or non-HTTP scheme: ws://127.0.0.1/"
+    },
+    {
+      "payload_id": "ssrf-zone-07",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "tftp://127.0.0.1/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Zone ID or non-HTTP scheme: tftp://127.0.0.1/"
+    },
+    {
+      "payload_id": "ssrf-extra-35",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:35/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra SSRF probe on port 35"
+    },
+    {
+      "payload_id": "ssrf-extra-36",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:36/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra SSRF probe on port 36"
+    },
+    {
+      "payload_id": "ssrf-extra-37",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:37/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra SSRF probe on port 37"
+    },
+    {
+      "payload_id": "ssrf-extra-38",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:38/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra SSRF probe on port 38"
+    },
+    {
+      "payload_id": "ssrf-extra-39",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:39/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra SSRF probe on port 39"
+    },
+    {
+      "payload_id": "ssrf-extra-40",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:40/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra SSRF probe on port 40"
+    },
+    {
+      "payload_id": "ssrf-extra-41",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:41/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra SSRF probe on port 41"
+    },
+    {
+      "payload_id": "ssrf-extra-42",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:42/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra SSRF probe on port 42"
+    },
+    {
+      "payload_id": "ssrf-extra-43",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:43/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra SSRF probe on port 43"
+    },
+    {
+      "payload_id": "ssrf-extra-44",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:44/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra SSRF probe on port 44"
+    },
+    {
+      "payload_id": "ssrf-extra-45",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:45/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra SSRF probe on port 45"
+    },
+    {
+      "payload_id": "ssrf-extra-46",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:46/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra SSRF probe on port 46"
+    },
+    {
+      "payload_id": "ssrf-extra-47",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:47/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra SSRF probe on port 47"
+    },
+    {
+      "payload_id": "ssrf-extra-48",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:48/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra SSRF probe on port 48"
+    },
+    {
+      "payload_id": "ssrf-extra-49",
+      "category": "ssrf",
+      "method": "GET",
+      "url": "http://127.0.0.1:49/",
+      "headers": {},
+      "body": "",
+      "expected_verdict": "CONTAINED",
+      "notes": "Extra SSRF probe on port 49"
+    }
+  ]
+}

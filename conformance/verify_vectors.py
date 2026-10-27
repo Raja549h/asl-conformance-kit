@@ -315,12 +315,146 @@ def verify_attestation(case) -> None:
         raise VectorError("attestation signature does not verify")
 
 
+# ── boundary wire contracts (P9) ────────────────────────────────────────
+
+WITNESS_SCHEMA = "asl.witness.v1"
+HW_KILL_SCHEMA = "asl.hw_kill.v1"
+BOUNDARY_VERSION = 1
+BOUNDARY_ALGORITHM_ID = "HS256"
+
+WITNESS_FIELDS = frozenset(
+    {
+        "schema",
+        "version",
+        "algorithm_id",
+        "run_id",
+        "seq_no",
+        "audit_head_hash",
+        "policy_hash",
+        "timestamp_ns",
+        "host_hmac",
+    }
+)
+HW_KILL_FIELDS = frozenset(
+    {
+        "schema",
+        "version",
+        "algorithm_id",
+        "target_node_id",
+        "reason_code",
+        "monotonic_nonce",
+        "audit_head_hash",
+        "hmac_sig",
+    }
+)
+KILL_REASON_CODES = frozenset(
+    {
+        "policy_violation",
+        "lease_expired",
+        "budget_exhausted",
+        "human_switch",
+        "tripwire_freeze",
+        "witness_disagreement",
+    }
+)
+
+
+def _boundary_parse(wire) -> dict:
+    """Strict JSON: duplicate keys and non-finite numbers are refused."""
+
+    def _no_duplicates(pairs):
+        seen = {}
+        for key, value in pairs:
+            if key in seen:
+                raise VectorError(f"duplicate key {key!r}")
+            seen[key] = value
+        return seen
+
+    def _no_constants(token):
+        raise VectorError(f"non-finite number {token!r}")
+
+    try:
+        return json.loads(wire, object_pairs_hook=_no_duplicates, parse_constant=_no_constants)
+    except json.JSONDecodeError as exc:
+        raise VectorError(f"not JSON: {exc}") from exc
+
+
+def _boundary_body(payload: dict, signature_field: str) -> dict:
+    return {key: value for key, value in payload.items() if key != signature_field}
+
+
+def verify_boundary_case(case) -> None:
+    """Verify one external-boundary wire case against the FAKE test key.
+
+    Negative cases are part of the vectors on purpose: a verifier that only ever
+    sees well-formed packets has not been shown to reject anything.
+    """
+    signature_field = "host_hmac" if case["kind"] == "witness" else "hmac_sig"
+    expected_fields = WITNESS_FIELDS if case["kind"] == "witness" else HW_KILL_FIELDS
+    expected_schema = WITNESS_SCHEMA if case["kind"] == "witness" else HW_KILL_SCHEMA
+
+    expect = case.get("expect", "ok")
+    try:
+        payload = _boundary_parse(case["wire"])
+        if not isinstance(payload, dict):
+            raise VectorError("packet must be an object")
+        missing = expected_fields - set(payload)
+        extra = set(payload) - expected_fields
+        if missing:
+            raise VectorError(f"packet is missing {sorted(missing)}")
+        if extra:
+            raise VectorError(f"packet carries unexpected fields {sorted(extra)}")
+        if payload["schema"] != expected_schema:
+            raise VectorError(f"unknown schema {payload['schema']!r}")
+        if payload["version"] != BOUNDARY_VERSION:
+            raise VectorError(f"unsupported version {payload['version']!r}")
+        if payload["algorithm_id"] != BOUNDARY_ALGORITHM_ID:
+            raise VectorError(f"unsupported algorithm {payload['algorithm_id']!r}")
+        for name in ("audit_head_hash",) + (("policy_hash",) if case["kind"] == "witness" else ()):
+            value = payload[name]
+            if not isinstance(value, str) or len(value) != 64:
+                raise VectorError(f"{name} must be 64 hex characters")
+            int(value, 16)
+        signature = payload[signature_field]
+        if not isinstance(signature, str) or len(signature) != 64:
+            raise VectorError(f"{signature_field} must be 64 hex characters")
+        expected_sig = hmac.new(
+            FAKE_KEY, canonical_bytes(_boundary_body(payload, signature_field)), hashlib.sha256
+        ).hexdigest()
+        if not hmac.compare_digest(expected_sig, signature):
+            raise VectorError(f"{signature_field} does not verify")
+        if case["kind"] == "hw_kill":
+            if payload["reason_code"] not in KILL_REASON_CODES:
+                raise VectorError(f"unknown reason_code {payload['reason_code']!r}")
+            nonce = payload["monotonic_nonce"]
+            if not isinstance(nonce, int) or isinstance(nonce, bool) or nonce < 1:
+                raise VectorError("monotonic_nonce must be a positive integer")
+            highest = case.get("ledger", {}).get(payload["target_node_id"], 0)
+            if nonce <= highest:
+                raise VectorError(
+                    f"replay: nonce {nonce} is not above the ledger high-water mark {highest}"
+                )
+    except VectorError as exc:
+        if expect == "error":
+            wanted = case.get("reason")
+            if wanted and wanted.lower() not in str(exc).lower():
+                raise VectorError(
+                    f"rejected for the wrong reason: wanted {wanted!r}, got {exc}"
+                ) from exc
+            return
+        raise
+
+    if expect == "error":
+        raise VectorError("a packet that must be rejected was accepted")
+
+
 FAMILIES = {
     "canonical.json": verify_canonical,
     "hashing.json": verify_hashing,
     "tokens.json": verify_token,
     "audit.json": verify_audit,
     "attestation_v1.json": verify_attestation,
+    "boundary_v1.json": verify_boundary_case,
 }
 
 
@@ -334,7 +468,13 @@ def main() -> int:
         if verifier is None:
             print(f"SKIP {path.name}: no verifier for family {family!r}")
             continue
-        if family in ("canonical-json", "argument-hashing", "token-mint-verify"):
+        if family in (
+            "canonical-json",
+            "argument-hashing",
+            "token-mint-verify",
+            "attestation-v1",
+            "boundary-wire-v1",
+        ):
             cases = doc["cases"]
             for case in cases:
                 checked += 1

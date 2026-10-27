@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "family": "boundary-wire-v1",
+  "description": "External boundary wire contracts: a witness checkpoint with a host HMAC and a hardware kill command with a monotonic nonce. Verified with HMAC-SHA256 over the canonical JSON form under a clearly-labeled FAKE test key.",
+  "fake_test_key_hex": "00112233445566778899aabbccddeeff00112233445566778899aabbccddeeff",
+  "cases": [
+    {
+      "name": "valid witness checkpoint",
+      "kind": "witness",
+      "wire": "{\"algorithm_id\":\"HS256\",\"audit_head_hash\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"host_hmac\":\"805ed1ee3adc607473b7e3215d550fbe22349927409004663c71ddde23816570\",\"policy_hash\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"run_id\":\"run-4f2a\",\"schema\":\"asl.witness.v1\",\"seq_no\":7,\"timestamp_ns\":1700000000000000000,\"version\":1}",
+      "expect": "ok"
+    },
+    {
+      "name": "witness checkpoint with a flipped host hmac",
+      "kind": "witness",
+      "wire": "{\"algorithm_id\":\"HS256\",\"audit_head_hash\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"host_hmac\":\"f05ed1ee3adc607473b7e3215d550fbe22349927409004663c71ddde23816570\",\"policy_hash\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"run_id\":\"run-4f2a\",\"schema\":\"asl.witness.v1\",\"seq_no\":7,\"timestamp_ns\":1700000000000000000,\"version\":1}",
+      "expect": "error",
+      "reason": "hmac"
+    },
+    {
+      "name": "witness checkpoint with a mutated audit head",
+      "kind": "witness",
+      "wire": "{\"algorithm_id\":\"HS256\",\"audit_head_hash\":\"cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc\",\"host_hmac\":\"805ed1ee3adc607473b7e3215d550fbe22349927409004663c71ddde23816570\",\"policy_hash\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"run_id\":\"run-4f2a\",\"schema\":\"asl.witness.v1\",\"seq_no\":7,\"timestamp_ns\":1700000000000000000,\"version\":1}",
+      "expect": "error",
+      "reason": "hmac"
+    },
+    {
+      "name": "witness checkpoint with an unknown schema",
+      "kind": "witness",
+      "wire": "{\"algorithm_id\":\"HS256\",\"audit_head_hash\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"host_hmac\":\"805ed1ee3adc607473b7e3215d550fbe22349927409004663c71ddde23816570\",\"policy_hash\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"run_id\":\"run-4f2a\",\"schema\":\"asl.witness.v2\",\"seq_no\":7,\"timestamp_ns\":1700000000000000000,\"version\":1}",
+      "expect": "error",
+      "reason": "schema"
+    },
+    {
+      "name": "witness checkpoint with an unsupported version",
+      "kind": "witness",
+      "wire": "{\"algorithm_id\":\"HS256\",\"audit_head_hash\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"host_hmac\":\"805ed1ee3adc607473b7e3215d550fbe22349927409004663c71ddde23816570\",\"policy_hash\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"run_id\":\"run-4f2a\",\"schema\":\"asl.witness.v1\",\"seq_no\":7,\"timestamp_ns\":1700000000000000000,\"version\":2}",
+      "expect": "error",
+      "reason": "version"
+    },
+    {
+      "name": "witness checkpoint carrying an extra field",
+      "kind": "witness",
+      "wire": "{\"algorithm_id\":\"HS256\",\"audit_head_hash\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"host_hmac\":\"805ed1ee3adc607473b7e3215d550fbe22349927409004663c71ddde23816570\",\"note\":\"x\",\"policy_hash\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"run_id\":\"run-4f2a\",\"schema\":\"asl.witness.v1\",\"seq_no\":7,\"timestamp_ns\":1700000000000000000,\"version\":1}",
+      "expect": "error",
+      "reason": "unexpected"
+    },
+    {
+      "name": "witness checkpoint with a duplicate key",
+      "kind": "witness",
+      "wire": "{\"algorithm_id\":\"HS256\",\"algorithm_id\":\"HS256\",\"audit_head_hash\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"host_hmac\":\"805ed1ee3adc607473b7e3215d550fbe22349927409004663c71ddde23816570\",\"policy_hash\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"run_id\":\"run-4f2a\",\"schema\":\"asl.witness.v1\",\"seq_no\":7,\"timestamp_ns\":1700000000000000000,\"version\":1}",
+      "expect": "error",
+      "reason": "duplicate"
+    },
+    {
+      "name": "valid hardware kill command",
+      "kind": "hw_kill",
+      "wire": "{\"algorithm_id\":\"HS256\",\"audit_head_hash\":\"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\",\"hmac_sig\":\"66e5b09cdc3b40a0115ac16e74694f7de74cad4393f8b7eb104c22a711231d70\",\"monotonic_nonce\":7,\"reason_code\":\"policy_violation\",\"schema\":\"asl.hw_kill.v1\",\"target_node_id\":\"node-17\",\"version\":1}",
+      "expect": "ok",
+      "ledger": {
+        "node-17": 6
+      }
+    },
+    {
+      "name": "hardware kill command with a tampered reason",
+      "kind": "hw_kill",
+      "wire": "{\"algorithm_id\":\"HS256\",\"audit_head_hash\":\"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\",\"hmac_sig\":\"66e5b09cdc3b40a0115ac16e74694f7de74cad4393f8b7eb104c22a711231d70\",\"monotonic_nonce\":7,\"reason_code\":\"human_switch\",\"schema\":\"asl.hw_kill.v1\",\"target_node_id\":\"node-17\",\"version\":1}",
+      "expect": "error",
+      "reason": "hmac"
+    },
+    {
+      "name": "hardware kill command with a nonce changed without re-signing",
+      "kind": "hw_kill",
+      "wire": "{\"algorithm_id\":\"HS256\",\"audit_head_hash\":\"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\",\"hmac_sig\":\"66e5b09cdc3b40a0115ac16e74694f7de74cad4393f8b7eb104c22a711231d70\",\"monotonic_nonce\":8,\"reason_code\":\"policy_violation\",\"schema\":\"asl.hw_kill.v1\",\"target_node_id\":\"node-17\",\"version\":1}",
+      "expect": "error",
+      "reason": "hmac"
+    },
+    {
+      "name": "hardware kill command replayed against the ledger",
+      "kind": "hw_kill",
+      "wire": "{\"algorithm_id\":\"HS256\",\"audit_head_hash\":\"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\",\"hmac_sig\":\"66e5b09cdc3b40a0115ac16e74694f7de74cad4393f8b7eb104c22a711231d70\",\"monotonic_nonce\":7,\"reason_code\":\"policy_violation\",\"schema\":\"asl.hw_kill.v1\",\"target_node_id\":\"node-17\",\"version\":1}",
+      "expect": "error",
+      "reason": "replay",
+      "ledger": {
+        "node-17": 7
+      }
+    },
+    {
+      "name": "hardware kill command behind the ledger",
+      "kind": "hw_kill",
+      "wire": "{\"algorithm_id\":\"HS256\",\"audit_head_hash\":\"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\",\"hmac_sig\":\"55d9c8461404760bcbfbbfe6108489854373b164e89cf9dabf99a419e46a08ad\",\"monotonic_nonce\":6,\"reason_code\":\"policy_violation\",\"schema\":\"asl.hw_kill.v1\",\"target_node_id\":\"node-17\",\"version\":1}",
+      "expect": "error",
+      "reason": "replay",
+      "ledger": {
+        "node-17": 7
+      }
+    },
+    {
+      "name": "hardware kill command advancing the nonce",
+      "kind": "hw_kill",
+      "wire": "{\"algorithm_id\":\"HS256\",\"audit_head_hash\":\"dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\",\"hmac_sig\":\"1309cc87f02e1e68425426c76ab7b7eeb70affad143c530eb99be0cc90dc5031\",\"monotonic_nonce\":8,\"reason_code\":\"policy_violation\",\"schema\":\"asl.hw_kill.v1\",\"target_node_id\":\"node-17\",\"version\":1}",
+      "expect": "ok",
+      "ledger": {
+        "node-17": 7
+      }
+    }
+  ]
+}

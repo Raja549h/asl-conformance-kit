@@ -428,13 +428,64 @@ file, and the `contextlib.closing(...)` change across the SQLite stores.
 | L4 | Assurance foundations: versioned crypto, conformance vectors with a second verifier, the run state machine, backend assurance classes verified by active probes, a signed run-assurance manifest, one output channel with no covert channel, signed tighten-only risk signals, a fixed-size heartbeat with a standalone watchdog, a stateless hash-verified run environment, uniform refusals, and conformance kits for every plug point. | Built / Tested (P2.5a, P2.5b) |
 | L4.5 | Swarm controls: gateway-assigned unforgeable identities, per-agent isolated workspaces, a mediated inter-agent bus where peer text is data never authority, collective budget/rate caps with a tighten-only tripwire, and a deterministic 700-agent collusion stress test with all six attack scenarios contained. | Built / Tested (P4) |
 | L3/L4.5 gates (measured) | An evidence gate measures the claim rather than asserting it: 1,000 trials/class over the 16 development classes and the 5 blind `heldout_v2` classes, the 250-payload public exploit benchmark suite, the evolutionary soak, the 700-agent swarm and fail-closed fault injection. `asl level` derives a signed report from the evidence files and fails closed on missing, tampered or breaching evidence. | Built / Tested (P7d/P7e) — dev `0/11,000`, held-out `0/5,000`, public `250/250` contained, mutation kill rate 97.7%; earned **L4.5 (Full Kernel + Mediated)** on a host with Linux namespaces (the signed report on disk), **L4.5 (Architecture Verified)** on native Windows ([proof](kernel-confinement.md)) |
-| L5+ | Research tiers (verified-kernel / hardware isolation, formal proof of the TCB, real-model adversarial resilience, a hardware kill actuator, a hardware heartbeat sink). | **NOT CLAIMED** — interface only, no implementation, no test |
+| Solo ceiling | Every gate one host can measure is measured and passing: TCB size and stdlib purity, mutation score, public benchmarks, dev and blind held-out trials, the 700-agent swarm, the covert-channel scrubber, the P8 fuzzer, and the P9 wire contracts. The four remaining dependencies are physical and are named as such. | Built / Tested (P9) — 9/9 solo gates, receipt in `docs/boundary-ceiling-report.json`; `asl boundary` prints the verdict and exits non-zero if any gate fails |
+| L5+ | Research tiers (verified-kernel / hardware isolation, formal proof of the TCB, real-model adversarial resilience, a hardware kill actuator, a hardware heartbeat sink). | **NOT CLAIMED** — interface only, no implementation, no test. The four physical blockers are enumerated by `asl boundary` |
 
 **Every seam in ASL is labeled "interface only" until a passing test backs it.** A
 seam that has no passing test is UNTESTED and must not be treated as a guarantee.
 The trusted core (`asl/core`) is the only component held to the 3,000-line
 stdlib-only boundary; everything outside it is untrusted and is validated by
 evidence, not by assertion.
+
+## P8 — continuous adversarial fuzzing and the auto-regression loop
+
+P8 turns the P3 attacker from a one-off search into a standing instrument. Two
+things change: the fuzzer grows four *targeted* families that generic mutation
+stops reaching, and the corpus loop becomes a first-class object that minimises,
+promotes and replays on its own. The code is
+`src/asl/cyberrange/fuzzer.py`, `src/asl/cyberrange/regression_loop.py`, the
+extended operator set in `src/asl/cyberrange/mutator.py`, and the
+`asl range fuzz` / `asl range regression` commands in `src/asl/cli.py`.
+
+I24 and I25 are **strengthened** rather than repeated: the corpus now grows from
+a loop that runs by itself, and the fitness scale is checked against the
+positive control on every run instead of once during development.
+
+| # | Invariant | Tests |
+|---|---|---|
+| I49 | **The new families are generated, family-fair, bounded and deterministic.** Four families — `url_parser` (control characters, Unicode confusables, overlong UTF-8, authority tricks), `header_smuggling` (`Content-Length`/`Transfer-Encoding` conflict, obs-fold, padded and duplicated names, `X-Forwarded-*` / `X-Original-URL` overrides), `zero_width_bidi` (zero-width and bidirectional format characters), and `token_widening` (claims to widen an attenuated capability) — each contribute to every population, each map back from their own origin, and every payload, body and frame count obeys the same clamps as the P3 grammar. A generator is a pure function of its seed: the same seed yields the same payloads and ids, a different seed yields different ones. The P3 operator set stays **frozen** and the seven P8 operators are added beside it, so the already-published corpus stays reproducible. A refusal is scored where it happens: a malformed header name is rejected by the harness's own request canonicaliser before a token can be minted, and that is a refusal **at the normalisation stage** (fitness 1), not an internal error — the header family is what exposed that the exception path was scoring such variants as fitness 0 "unknown refusal" with `error` set. | `tests/test_p8_fuzzing_and_regression.py::TestDeterminism` (whole class, including `::test_the_published_operator_set_is_not_widened`), `::TestFamilies` (whole class), `::TestFitnessMonotonicity::test_a_malformed_header_name_is_scored_as_a_refusal_not_an_error` |
+| I50 | **The loop minimises, promotes and replays safely.** A variant worth keeping is reduced to the shortest payload that reaches **exactly** the same stage — a cut that exposes a bypass scores the breach stage and is rejected, so minimisation can never manufacture a finding — and the pass is bounded by `MAX_MINIMISE_TRIALS`. A trial at the floor (fitness 0) is never minimised, because every candidate ties there and the minimiser would shred a payload into a fragment that reproduces nothing; a trial that raised or was inconclusive is kept verbatim, because its verdict belongs to that exact input. The corpus is rewritten atomically (temporary sibling, `fsync`, then `os.replace`): a crash mid-rewrite leaves the previous corpus intact and leaves no temporary file behind, and the corpus is **never** opened in append mode. Transcripts are *reserved* with `O_CREAT | O_EXCL` rather than named from a clock, because two runs inside one clock tick would otherwise share a filename and one would silently truncate the other's evidence. Replay is the gate: every entry, old and new, is re-run against the live gateway, and an entry that now breaches is a regression that turns the run red. | `tests/test_p8_fuzzing_and_regression.py::TestMinimisation` (whole class), `::TestCorpusAtomicity` (whole class), `::TestEndToEnd` (whole class) |
+| I25 (P8) | **The ceiling holds on every run, and the control still breaches.** Against the real gateway a fuzzing run peaks at "reached a service" (fitness 4, `FITNESS_CEILING_REAL_GATEWAY`) with **zero** breaches and no replay regression; against the planted-flaw positive control the same loop reaches fitness 5, which is what proves the scale can still fail. A run whose trials disagree with the breach flag is rejected as a progress metric, and a control that never breaches fails the same check as a gateway that does. | `tests/test_p8_fuzzing_and_regression.py::TestFitnessMonotonicity` (whole class) |
+
+**Honest gaps (P8).** The four families are grammar, not model: they explore a
+fixed candidate space, so a stronger generator could still find a shape none of
+these produce — that remains UNTESTED. Minimisation is segment-granular (it cuts
+at delimiters) rather than a general delta-debugger, so a reproducer is small but
+not provably minimal. The loop promotes into `tests/corpus/regression_seeds.jsonl`,
+which is a tracked file: a run therefore dirties the tree by design, and the
+promotion is reviewed like any other evidence change.
+
+## P9 — the external boundary and the solo-host ceiling
+
+P9 finishes the software half of the two dependencies that are *physical* — an
+independent witness and a power-cut relay — and then says, in one auditable
+place, which claims one host can prove and which it cannot. The code is
+`src/asl/boundary/external_contracts.py` (deliberately outside the trusted core,
+so the TCB line count does not move), the `asl boundary` command, and
+`conformance/vectors/boundary_v1.json`.
+
+| # | Invariant | Tests |
+|---|---|---|
+| I51 | **The external wire contracts are deterministic, versioned and replay-proof.** A witness checkpoint is canonical JSON (`schema`, `version`, `algorithm_id`, run/seq/hashes/timestamp) signed with the *host* key; an acknowledgment is signed with a **different** key held by the witness, so a host that could produce both would be its own witness, and each acknowledgment is bound to one packet and one freshness window. A hardware kill command is the same shape plus a `monotonic_nonce`, and a relay accepts it only when the signature verifies **and** the nonce strictly exceeds the high-water mark for that node — and the signature is checked *first*, so a forged frame cannot burn a real nonce and lock out a genuine kill. Both parsers refuse a duplicate key, a non-finite number, an unknown schema or version, and any field they did not expect. The boundaries are testable by a second implementation: `conformance/vectors/boundary_v1.json` carries 13 cases, including the negative ones, and the standalone verifier reproduces every byte. | `tests/test_p9_boundary_and_ceiling.py::TestWitnessPacket`, `::TestWitnessAck`, `::TestKillCommand`, `::TestBoundaryVectors` (whole classes) |
+| I52 | **The ceiling is a measurement with two buckets, and it fails closed.** `verify_solo_ceiling()` measures nine solo gates — TCB lines *and* stdlib-only imports read from source, the mutation kill rate, the 5 signed public-benchmark receipts, the dev and blind held-out trials, the 700-agent swarm, a **live** covert-channel measurement (5 bit-0/bit-1 probes collapsed to 0 bits/s), the P8 fuzzer, and a round-trip self-test of the P9 contracts — and separately enumerates the four physical dependencies that no local host can close. `solo_complete` is `True` only when every gate passes; pointed at an empty directory the same inspector reports `INCOMPLETE` and names the failing gates. The receipt it writes is HMAC-SHA256 sealed, and flipping any gate in it breaks the signature. | `tests/test_p9_boundary_and_ceiling.py::TestSoloCeiling`, `::TestCeilingReceipt`, `::TestCli` (whole classes) |
+
+**Honest gaps (P9).** The wire contracts are *contracts*: no witness host and no
+relay exist, so nothing here has been exercised against real hardware — the
+software half is tested, the hardware half is absent. A signed evidence report
+generated on another platform cannot be byte-verified here, because the signing
+key is per-host; the inspector says so explicitly instead of calling it
+tampering, and the P9 receipt carries the local seal. `L4.5-FULL-KERNEL` remains
+conditional on the host: proven under WSL2, skipped on native Windows.
 
 
 

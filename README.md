@@ -34,7 +34,7 @@ zero `asl` imports) against every conformance vector, prints
 | Solo-host ceiling (P9) | **9 / 9** solo gates measured and passing; 4 physical dependencies named as outside one host |
 | Kernel-level egress confinement | **PROVEN** on Ubuntu 26.04 / WSL2 — 3/3 tests; a `unshare --net` child has **no route at all** while the mediated channel still returns a real `200` |
 | Conformance vectors | 6 files, **45 cases**, verified by a second stdlib-only implementation |
-| Invariants | **50** numbered invariants (I1–I52) plus the mutation and level rows, each mapped to the tests that check it |
+| Invariants | **52** numbered invariants (I1–I52, no gaps) plus the mutation and level rows, each mapped to the tests that check it |
 | **Earned level** | **L4.5 (Full Kernel + Mediated)** where Linux namespaces exist; **L4.5 (Architecture Verified)** on native Windows |
 
 ## What is in here

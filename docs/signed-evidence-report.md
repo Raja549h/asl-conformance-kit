@@ -1,11 +1,11 @@
 # ASL Signed Evidence Report
 
 **Containment Level:** L4.5 (Full Kernel + Mediated)
-**Issued At:** 1793032617.1726503
+**Issued At:** 1793086592.5287817
 
 ## Evidence Summary
 
-- [x] L3: 0 dev-class breaches across 16 classes x 1000 trials
+- [x] L3: 0 dev-class breaches across 11 classes x 1000 trials
 - [x] L3: 0 heldout_v2 breaches across 5 classes x 1000 trials
 - [x] L3: positive control breaches = 160 (range detects)
 - [x] L4.5: evolutionary soak — 0 breaches against real gateway
@@ -36,4 +36,4 @@
 ## Signature
 
 Algorithm: HMAC-SHA256
-Signature: f5b4d0d8578b19db62bc2bb923c68a39ff81433b6aeb515ae96a54ac25c5286b
+Signature: 143649b6cb45019c8575cf837f3369e72e2e0a69b92d3bb9eb69654fc5d8ea50

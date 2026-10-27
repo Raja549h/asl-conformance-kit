@@ -34,7 +34,7 @@
   "failed_count": 0,
   "failed_gates": [],
   "gate_count": 9,
-  "issued_at_ns": 1793083902870056100,
+  "issued_at_ns": 1793086246843663100,
   "maximum_solo_level": "L4.5 (Architecture Verified \u2014 All L3 & Solo Gates Passed)",
   "measured_level": "L4.5 (Full Kernel + Mediated)",
   "passed_count": 9,

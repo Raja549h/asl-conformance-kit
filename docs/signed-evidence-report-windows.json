@@ -30,10 +30,10 @@
     "trials_1000_report": true
   },
   "failed": [],
-  "issued_at": 1793031310.9957507,
+  "issued_at": 1793086170.9911294,
   "level": "L4.5 (Architecture Verified)",
   "passed": [
-    "L3: 0 dev-class breaches across 16 classes x 1000 trials",
+    "L3: 0 dev-class breaches across 11 classes x 1000 trials",
     "L3: 0 heldout_v2 breaches across 5 classes x 1000 trials",
     "L3: positive control breaches = 160 (range detects)",
     "L4.5: evolutionary soak \u2014 0 breaches against real gateway",
@@ -42,5 +42,5 @@
     "L4.5: mutation kill rate = 97.7% (>= 95%)"
   ],
   "receipt_algorithm": "HMAC-SHA256",
-  "receipt_signature": "565177ed89fa84bad1c62afc457874cefac892bc445402db9626e24f01683b8e"
+  "receipt_signature": "839bb5ee6d20eeb51dfbf394fa4999e36299d1403fb6edd59356bb4be94d0967"
 }

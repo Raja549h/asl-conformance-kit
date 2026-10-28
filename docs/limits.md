@@ -83,4 +83,23 @@ ASL provides robust isolation but has known boundaries:
     three credential-shaped requests, 50 concurrent queue-flooding agents, and per-agent step/message/spend/covert-bit
     budgets are chosen by hand. They are tested to fire and to stay quiet for the legitimate baseline,
     but the false-positive rate on a real workload is **UNTESTED**.
+24. **A finding is a claim, not a verified vulnerability (P12).** The report schema carries a
+    hash of an observation and a capped summary. Nothing in ASL re-tests the flaw, and on an
+    asset outside the scope inventory nothing *may* re-test it (see `docs/claims.md`): a
+    third-party report is believed or dismissed by the recipient, not by ASL.
+25. **Disclosure transport is a local file sink (P12).** An approved, unembargoed draft's
+    "send" is a state change in a local file — there is no real mail or HTTP transport. A
+    draft never leaves the host through this path; packaging a real transport is a
+    contributor task. The rate limit and embargo therefore bound the *local* pipeline.
+26. **Remediation proposals are neither applied nor verified beyond the caller's tests (P12).**
+    The sandbox stages the proposal and runs whatever command the caller supplies inside the
+    staging copy. Whether the patch is *correct* is whatever those tests say; ASL does not
+    verify the fix on the production system, ever.
+27. **The finding thresholds are heuristics (P12).** The probe-pattern classifier (what
+    counts as an exploit-shaped message), the report/probe → severity mapping and the
+    disclosure rate window are chosen by hand. They are tested to fire and to stay quiet on
+    the range baseline; their behaviour on a real model's traffic is **UNTESTED**.
+28. **Time-to-containment ends at the gateway, not at the recipient (P12).** The measured
+    interval runs from the report being accepted to the deny being installed. The time for a
+    human to triage the ticket or approve a disclosure is a human quantity and is UNTESTED.
 

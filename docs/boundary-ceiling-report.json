@@ -1,5 +1,5 @@
 {
-  "evidence_signature": "signed on linux; the signing key is per-host and not available here",
+  "evidence_signature": "signature verified with this host's key",
   "evidence_signature_ok": true,
   "external_requirements": [
     {
@@ -34,12 +34,12 @@
   "failed_count": 0,
   "failed_gates": [],
   "gate_count": 9,
-  "issued_at_ns": 1793086246843663100,
+  "issued_at_ns": 1793157665908547191,
   "maximum_solo_level": "L4.5 (Architecture Verified \u2014 All L3 & Solo Gates Passed)",
   "measured_level": "L4.5 (Full Kernel + Mediated)",
   "passed_count": 9,
   "receipt_algorithm": "HS256",
-  "receipt_signature": "78762089a20ff3048c469821dddfa49b35b89cb8c6c915ee321f4af8f5a76c23",
+  "receipt_signature": "d74c5163c221b16fcfa84fdabd1f962e8e30fb8f35684e9d58dd77089d3e85e3",
   "solo_complete": true,
   "solo_gates": [
     {
@@ -53,13 +53,13 @@
       "passed": true
     },
     {
-      "detail": "threshold 95%; 14 surviving mutant(s), each explained in docs/invariants.md; signed on linux; the signing key is per-host and not available here",
+      "detail": "threshold 95%; 14 surviving mutant(s), each explained in docs/invariants.md; signature verified with this host's key",
       "evidence": [
-        "docs\\signed-evidence-report.json"
+        "docs/signed-evidence-report.json"
       ],
       "key": "mutation_kill_rate",
       "label": "AST mutation kill rate over the trusted core and egress gateway",
-      "measured": "97.7% (585/599 killed)",
+      "measured": "97.7% (592/606 killed)",
       "passed": true
     },
     {
@@ -73,19 +73,19 @@
       "passed": true
     },
     {
-      "detail": "attested by the signed report; signed on linux; the signing key is per-host and not available here",
+      "detail": "attested by the signed report; signature verified with this host's key",
       "evidence": [
-        "docs\\signed-evidence-report.json"
+        "docs/signed-evidence-report.json"
       ],
       "key": "dev",
       "label": "Development attack classes contained",
-      "measured": "0/11,000 breaches over 11 dev classes",
+      "measured": "0/12,000 breaches over 12 dev classes",
       "passed": true
     },
     {
-      "detail": "attested by the signed report; signed on linux; the signing key is per-host and not available here",
+      "detail": "attested by the signed report; signature verified with this host's key",
       "evidence": [
-        "docs\\signed-evidence-report.json"
+        "docs/signed-evidence-report.json"
       ],
       "key": "heldout_v2",
       "label": "Blind held-out v2 classes contained",
@@ -93,9 +93,9 @@
       "passed": true
     },
     {
-      "detail": "attested by the signed report; signed on linux; the signing key is per-host and not available here",
+      "detail": "attested by the signed report; signature verified with this host's key",
       "evidence": [
-        "docs\\signed-evidence-report.json"
+        "docs/signed-evidence-report.json"
       ],
       "key": "swarm_700",
       "label": "700-agent swarm collusion contained",

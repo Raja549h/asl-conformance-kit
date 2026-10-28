@@ -10,11 +10,11 @@
 | Gate | Measurement | Passed | Evidence |
 |---|---|---|---|
 | Trusted core is stdlib-only and under the line budget | 2,998 lines across 11 modules; 24 imports, all stdlib | yes | src/asl/core/*.py (11 files) |
-| AST mutation kill rate over the trusted core and egress gateway | 97.7% (585/599 killed) | yes | docs\signed-evidence-report.json |
+| AST mutation kill rate over the trusted core and egress gateway | 97.7% (592/606 killed) | yes | docs/signed-evidence-report.json |
 | Public exploit benchmark suite contained | 250/250 contained on ASL, 250/250 breached the --vulnerable control | yes | conformance/benchmarks/receipts/ (5 signed receipts) |
-| Development attack classes contained | 0/11,000 breaches over 11 dev classes | yes | docs\signed-evidence-report.json |
-| Blind held-out v2 classes contained | 0/5,000 breaches over 5 blind classes | yes | docs\signed-evidence-report.json |
-| 700-agent swarm collusion contained | 700 agents, 0 breaches, 0 false alarms across S01-S06 | yes | docs\signed-evidence-report.json |
+| Development attack classes contained | 0/12,000 breaches over 12 dev classes | yes | docs/signed-evidence-report.json |
+| Blind held-out v2 classes contained | 0/5,000 breaches over 5 blind classes | yes | docs/signed-evidence-report.json |
+| 700-agent swarm collusion contained | 700 agents, 0 breaches, 0 false alarms across S01-S06 | yes | docs/signed-evidence-report.json |
 | Covert-channel scrubbing on the output boundary | 0 bit(s) crossed 5 probed channels; 0.0 bits/s | yes | src/asl/output/leak.py + src/asl/output/canonical.py (live measurement) |
 | Continuous adversarial fuzzer and auto-regression corpus loop | 4 grammar families (url_parser, header_smuggling, zero_width_bidi, token_widening) | yes | src/asl/cyberrange/fuzzer.py; src/asl/cyberrange/regression_loop.py |
 | Off-box witness and hardware kill wire contracts | witness ack verified, packet round-tripped, replayed kill command rejected | yes | src/asl/boundary/external_contracts.py |
@@ -48,5 +48,5 @@ SOLO CEILING REACHED: 100% of software, cryptographic, and protocol architecture
 ## Receipt
 
 Algorithm: HS256
-Signature: 78762089a20ff3048c469821dddfa49b35b89cb8c6c915ee321f4af8f5a76c23
-Issued (ns): 1793086246843663100
+Signature: d74c5163c221b16fcfa84fdabd1f962e8e30fb8f35684e9d58dd77089d3e85e3
+Issued (ns): 1793157665908547191

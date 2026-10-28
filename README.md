@@ -23,10 +23,11 @@ zero `asl` imports) against every conformance vector, prints
 | Metric | Value |
 |---|---|
 | Trusted core (TCB) | **2,998 lines** across 11 stdlib-only modules (budget 3,000) |
-| AST mutation kill rate | **97.7%** — 585 / 599 mutants; all 14 survivors proven *equivalent* |
+| AST mutation kill rate | **97.7%** — 592 / 606 mutants; all 14 survivors proven *equivalent* |
 | Public exploit containment | **250 / 250** contained — **250/250** breach the `--vulnerable` control, **0/250** breach ASL |
-| Gate trials | **0 / 16,000** breaches — dev `0/11,000` (11 dev classes × 1,000) + blind `heldout_v2` `0/5,000` (5 classes × 1,000) |
-| Positive control | **160** breaches — the range is proven *able* to detect |
+| Gate trials | **0 / 17,000** breaches — dev `0/12,000` (12 dev classes × 1,000) + blind `heldout_v2` `0/5,000` (5 classes × 1,000) |
+| Positive control | **170** breaches — the range is proven *able* to detect |
+| Finding handler (P12) | Class 17 is the 12th dev class: a discovery is **reportable**, the follow-up exploit is **denied** (REPORT_ONLY), and the report reaches the sink — 1,000 trials contained |
 | 700-agent swarm | **0** breaches, **0** false alarms; `S01`–`S06` collusion all contained |
 | Fault injection | all paths fail closed |
 | Covert channels | **0 bits/s** across 5 probed channels on the output boundary |
@@ -34,7 +35,7 @@ zero `asl` imports) against every conformance vector, prints
 | Solo-host ceiling (P9) | **9 / 9** solo gates measured and passing; 4 physical dependencies named as outside one host |
 | Kernel-level egress confinement | **PROVEN** on Ubuntu 26.04 / WSL2 — 3/3 tests; a `unshare --net` child has **no route at all** while the mediated channel still returns a real `200` |
 | Conformance vectors | 6 files, **45 cases**, verified by a second stdlib-only implementation |
-| Invariants | **52** numbered invariants (I1–I52, no gaps) plus the mutation and level rows, each mapped to the tests that check it |
+| Invariants | **60** numbered invariants (I1–I60, no gaps) plus the mutation and level rows, each mapped to the tests that check it |
 | **Earned level** | **L4.5 (Full Kernel + Mediated)** where Linux namespaces exist; **L4.5 (Architecture Verified)** on native Windows |
 
 ## What is in here
@@ -45,7 +46,7 @@ zero `asl` imports) against every conformance vector, prints
 | `conformance/vectors/*.json` | Language-neutral fixtures: canonical JSON, argument hashing, token mint/verify, audit chain, `X-ASL-Attestation`, and the **P9 external boundary** (witness checkpoint + hardware kill command, positive *and* negative cases) |
 | `conformance/benchmarks/*.json` | Five public exploit bundles, 50 payloads each (250 total) |
 | `conformance/benchmarks/receipts/*.json` | Five signed, path-free tester receipts (submission SHA-256 + per-payload verdicts) |
-| `docs/invariants.md` | The numbered invariants through P9, and the containment-levels table |
+| `docs/invariants.md` | The numbered invariants through P12, and the containment-levels table |
 | `docs/signed-evidence-report.json` / `.md` | The HMAC-SHA256-signed level report — the **Linux/WSL2** run, `L4.5 (Full Kernel + Mediated)` |
 | `docs/signed-evidence-report-windows.json` / `.md` | The **native Windows** run, kept verbatim: `L4.5 (Architecture Verified)` |
 | `docs/boundary-ceiling-report.json` / `.md` | The **P9 ceiling**: nine measured solo gates, the four physical dependencies, and the sealed verdict |
@@ -90,6 +91,17 @@ key, and a kill command whose monotonic nonce makes a captured frame worthless.
 Their vectors — including the negative ones — are in this kit, so the formats can
 be implemented against independently. No hardware has been exercised: the
 contracts are tested, the relay and the witness host do not exist here.
+
+The **finding handler (P12)** draws a different line: ASL changes what an agent
+*does* with a discovered flaw, not who owns the system. A finding is typed
+evidence — a target id, a class, a severity, a hash and a capped,
+non-weaponized summary, with no field that could carry a payload — and filing
+one tightens the run to **REPORT_ONLY**: exploit-capable tokens revoked,
+outbound to that target denied, only the report channel left open. Assets named
+in the scope inventory get a ticket; third-party findings stay *drafts* until a
+human approves them. **ASL does not fix third-party systems and does not verify
+exploits on systems you do not own** — an out-of-scope asset is report-only, and
+no path here patches a system nobody in the scope file owns.
 
 It does **not** claim kernel confinement on **native Windows**, where no Linux
 namespace is available; the Windows report in this kit says
